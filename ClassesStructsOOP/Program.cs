@@ -68,6 +68,23 @@ namespace ClassesStructsOOP
             hero.PrintStatsInfo();
             villain.PrintStatsInfo();
 
+            villain.name = "Sir Kane the Brave";
+            hero.PrintStatsInfo();
+            villain.PrintStatsInfo();
+
+            //testing value types
+            //hunting bow declared above alr
+            Weapon warBow = huntingBow;
+
+            huntingBow.PrintWeaponStats();
+            warBow.PrintWeaponStats();
+
+            warBow.name = "War Bow";
+            warBow.damage = 155;
+
+            huntingBow.PrintWeaponStats();
+            warBow.PrintWeaponStats();
+
         }
     }
 }
