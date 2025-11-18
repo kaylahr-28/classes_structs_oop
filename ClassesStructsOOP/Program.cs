@@ -4,6 +4,8 @@ namespace ClassesStructsOOP
 {
     public class Character
     {
+
+      
         //vars aka fields
         public string name;
         public int exp = 0;
@@ -12,20 +14,44 @@ namespace ClassesStructsOOP
         public Character()
         {
             name = "Not assigned";
+            Reset();
         }
 
         //constructor overloading- adding another constructor
         public Character(string name)
         {
-            this.name = name;
+            this.name = name; 
         }
 
         //new method
-        public void PrintStatsInfo()
+        //"Virtual" tells compiler this method can have many shapes
+        //according to the calling class
+        public virtual void PrintStatsInfo()
         {
             Console.WriteLine("Hero: " + this.name + " - " + this.exp + " EXP");
         }
 
+        private void Reset()
+        {
+            this.name = "Not assigned";
+            this.exp = 0;
+        }
+
+    }
+
+    public class Paladin: Character
+    {
+        public Weapon weapon;
+        //calling parent class constructor
+        public Paladin(string name, Weapon weapon): base(name)
+        {
+            this.weapon = weapon;
+        }
+
+        public override void PrintStatsInfo()
+        {
+            Console.WriteLine("Hail " + this.name + " - take up your " + this.weapon.name + "!");
+        }
     }
 
     public struct Weapon
@@ -85,6 +111,16 @@ namespace ClassesStructsOOP
             huntingBow.PrintWeaponStats();
             warBow.PrintWeaponStats();
 
+            //experimenting w/ inheritance
+            Paladin knight = new Paladin("Sir Arthur", huntingBow);
+            knight.PrintStatsInfo();
+
+            //testing external files
+            Adventurer mike = new Adventurer("Mike");
+            mike.PrintStatsInfo();
+
+            Dude dave = new Dude("Dave");
+            dave.PrintStatsInfo();
         }
     }
 }
